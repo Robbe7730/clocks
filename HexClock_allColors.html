@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hex Clock All Colors</title>
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+      }
+      #background {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        vertical-align: middle;
+      }
+      #bgtext {
+        color: white;
+        font-family: monospace;
+        text-align: center;
+        font-size: 4.5em;
+        display: block;
+        min-width: 200px;
+        font-weight: 100;
+      }
+      .absolute-center {
+      	/*width: 50%;*/
+        	margin: auto;
+        	position: absolute;
+        	top: 50%; left: 50%;
+        	-webkit-transform: translate(-50%,-50%);
+            -ms-transform: translate(-50%,-50%);
+                transform: translate(-50%,-50%);
+        }
+    </style>
+    <script type="text/javascript">
+    function refreshData()
+    {
+      x = 1;  // x = seconds
+      var seconds = Math.round(new Date() / 1000);
+      console.log(seconds)
+      var secondsmodulo = seconds % (256*256*256);
+      var colorText = "#" + secondsmodulo.toString(16)
+
+      document.getElementById("background").style="background-color: " + colorText + ";"
+      document.getElementById("bgtext").innerHTML = colorText.toUpperCase()
+    }
+    </script>
+  </head>
+  <body onload="refreshData(); setInterval(refreshData, 1000);">
+    <div id="background" style="">
+      <div id="bgtext" class="absolute-center">
+        #000000
+      </div>
+    </div>
+  </body>
+</html>
